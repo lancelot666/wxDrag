@@ -1,0 +1,36 @@
+<view class="container" style='width:{{windowWidth}}px;height:{{windowHeight}}px;'>
+  <!-- 图片活动区域 -->
+  <view class='moving' style='width:{{bgWidth}}px;height:{{bgHeight}}px;'>
+    <!-- 背景，点击背景取消聚焦 -->
+    <view class='sceneBg' catchtap='closeMask'>
+      <image class='imgBg' src='{{bgImage}}' style='width:{{bgWidth}}px;height:{{bgHeight}}px;'></image>
+    </view>
+    <!-- 生成的图片列表 -->
+    <block wx:key="{{item.id}}" wx:for="{{itemList}}">
+      <!-- 移动缩放容器 -->
+      <view class='imgD1' style='transform: scale({{item.scale}});top:{{item.top}}px;left:{{item.left}}px; '>
+        <!-- 长按图片触发菜单容器 -->
+        <view catchlongpress="longPress" class='imgB1 {{item.active? "touchActive":""}}' style="transform: rotate({{item.angle}}deg);">
+          <!-- 关闭按钮 -->
+          <text hidden='{{item.active?false:true}}' class='x iconfont icon-guanbi1' style='transform: scale({{item.oScale}});transform-origin:center;' data-id='{{item.id}}' catchtap='deleteItem'></text> 
+          <!-- 图像本体 -->
+          <image mode='widthFix' src='{{item.image}}' data-id='{{item.id}}' style='width:{{item.width}}px;height:{{item.height}}px;' bindtouchstart='WraptouchStart' bindload='loadImg' catchtouchmove='WraptouchMove' catchtouchend='WraptouchEnd'></image>
+            <!-- 缩放旋转按钮 -->
+            <text hidden='{{item.active?false:true}}' class='o iconfont icon-fangda' style='transform: scale({{item.oScale}});transform-origin:center;' data-id='{{item.id}}' catchtouchstart='touchStart' catchtouchmove='touchMove' catchtouchend='touchEnd'></text> 
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- 生成图片按钮 -->
+  <view style='display:flex;'>
+    <button catchtap='createImg'>生成图片</button>
+    <button catchtap='createCanvas'>生成canvas</button>
+  </view>
+  <!-- canvas遮罩层 -->
+  <view catchtap='toggleCanvas' hidden="{{!showCanvas}}" class='canvasView'>
+    <!-- canvas -->
+    <canvas catchtap='closeCanvas' hidden="{{!showCanvas}}" class='canvasDiv' canvas-id="firstCanvas" catchlongpress="clong" style='width:{{bgWidth*0.75}}px;height:{{bgHeight*0.75}}px;'></canvas> 
+  </view>
+  <!-- canvas图片保存按钮 -->
+  <button hidden="{{!showCanvas}}" catchtap='saveBtn' class='btnDiv' style='left:{{windowsWidth/2-70}}px;'>保存到相册</button>
+</view>

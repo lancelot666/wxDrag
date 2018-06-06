@@ -1,0 +1,72 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: gray;
+}
+.moving{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.imgD1{
+  position: absolute;
+}
+.touchActive{
+ border: 1px dashed red;
+}
+.o{
+  color: greenyellow;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  z-index: 99;
+  right: -9px;
+  bottom: -9px;
+}
+.x{
+  color: greenyellow;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  z-index: 99;
+  left: -9px;
+  top: -9px;
+}
+.sceneBg{
+  background-repeat: no-repeat;
+  background-size: 100% 100% ;
+  background-position: 50% 50%;
+  overflow: hidden;
+  position:relative;
+}
+.imgBg{background: gray;}
+image{display:block;}
+.canvasView{
+  background: #000;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.canvasDiv{
+  overflow:hidden;
+  position: absolute;
+  margin-top: 50rpx;
+}
+.btnDiv{
+  position: fixed;
+  z-index: 102;
+  display: flex;
+  justify-content: center;
+  width: 140px;
+  font-size: 30rpx;
+  bottom: 80rpx;
+}
